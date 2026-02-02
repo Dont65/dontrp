@@ -23,7 +23,7 @@ DontRP - это плагин для серверов Minecraft на базе Pap
 
 1. Убедитесь, что ваш сервер использует Paper/Spigot (версия 1.21.4 или выше).
 2. Установите [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) (опционально, но рекомендуется).
-3. Скачайте последнюю версию DontRP из [релизов](https://github.com/Dont65/DontRP/releases) (или соберите из исходного кода).
+3. Скачайте последнюю версию DontRP из [релизов](https://github.com/Dont65/dontrp/releases) (или соберите из исходного кода).
 4. Поместите файл `DontRP.jar` в папку `plugins` вашего сервера.
 5. Перезапустите сервер.
 
@@ -57,7 +57,6 @@ DontRP - это плагин для серверов Minecraft на базе Pap
 |---------|----------|--------|
 | `/adm rpname <игрок> remove` | Удалить RP имя игрока | `/adm rpname Dont65 remove` |
 | `/adm rpname <игрок> <Имя> <Фамилия>` | Установить RP имя игрока | `/adm rpname Dont65 Иван Петров` |
-| `/adm rpname list [all]` | Список RP имен | `/adm rpname list all` |
 | `/adm description <игрок> remove` | Удалить описание игрока | `/adm description Dont65 remove` |
 | `/adm description <игрок> <текст>` | Установить описание игрока | `/adm description Dont65 Высокий эльф` |
 
@@ -132,7 +131,7 @@ DontRP - это плагин для серверов Minecraft на базе Pap
 Если вы хотите собрать плагин самостоятельно:
 
 1. Установите [Maven](https://maven.apache.org/).
-2. Клонируйте репозиторий: `git clone https://github.com/Dont65/DontRP.git`
+2. Клонируйте репозиторий: `git clone https://github.com/Dont65/dontrp.git`
 3. Перейдите в папку проекта: `cd DontRP`
 4. Соберите проект: `mvn clean package`
 5. Готовый файл `DontRP.jar` будет находиться в папке `target`.
