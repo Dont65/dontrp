@@ -1,14 +1,10 @@
 # DontRP - Плагин для ролевой игры в Minecraft 
 <div>
-  <img width="1200" height="475" alt="DnD" src="https://img.shields.io/badge/version-1.4-blue" />
+  <img src="https://img.shields.io/badge/version-1.4-blue" />
+  <img src="https://img.shields.io/badge/Minecraft-1.21.4-red" />
+  <img src="https://img.shields.io/badge/Paper-1.21.4_R0.1-yellow" />
+  <img src="https://img.shields.io/badge/license-MIT-orange" />
 </div>
-https://img.shields.io/badge/version-1.4-blue
-
-https://img.shields.io/badge/Minecraft-1.21.4-green
-
-https://img.shields.io/badge/Paper-1.21.4_R0.1-yellow
-
-https://img.shields.io/badge/license-MIT-orange
 
 DontRP - это плагин для серверов Minecraft на базе Paper/Spigot, который добавляет систему ролевых имен (RP имен), описаний персонажей, команды для отыгрыша (me, do, try, todo, roll), а также систему цветных имен и настроек броска кубика.
 
