@@ -1,23 +1,75 @@
 name: DontRP
-version: 1.4
+version: \${project.version}
 main: com.github.dont65.dontrp.DontRP
 api-version: 1.21
 authors: [Dont65]
 softdepend: [PlaceholderAPI]
 permissions:
-  dontrp.rpname_color.admin:
-    description: Позволяет менять цвет имени через HEX
+  dontrp.description.view:
+    description: Позволяет просматривать описания других игроков
+    default: true
+  dontrp.description.set:
+    description: Позволяет устанавливать свое описание
+    default: true
+  dontrp.description.admin:
+    description: Администрирование описаний других игроков
+    default: op
+  dontrp.rpname.view:
+    description: Позволяет просматривать RP имена других игроков
+    default: true
+  dontrp.rpname.admin:
+    description: Администрирование RP имен других игроков
+    default: op
+  dontrp.rpname_color.*:
+    description: Дает доступ ко всем цветам имен
     default: op
   dontrp.admin:
-    description: Полный доступ
+    description: Полные права на плагин
     default: op
 commands:
-  rpname: { description: "Manage RP Name" }
-  me: { description: "Action" }
-  do: { description: "Describe" }
-  try: { description: "Try" }
-  todo: { description: "Talk and do" }
-  roll: { description: "Roll dice" }
-  rp: { description: "Settings" }
-  description: { description: "Character bio", aliases: [desc] }
-  adm: { description: "Admin commands" }
+  rpname:
+    description: Управление RP именем
+    usage: |
+      /rpname - Показать свое RP имя
+      /rpname <игрок> - Показать RP имя игрока
+      /rpname <Имя> <Фамилия> - Установить RP имя
+  me:
+    description: RP действие от первого лица
+    usage: /me <действие>
+  do:
+    description: Описание от третьего лица
+    usage: /do <описание>
+  try:
+    description: Действие с вероятностью
+    usage: /try <действие>
+  roll:
+    description: Бросок кубика
+    usage: |
+      /roll [min] [max] - Бросить кубик
+      /roll default <min> <max> - Установить значения по умолчанию для себя
+  todo:
+    description: Действие со словами
+    usage: /todo <действие> * <слова>
+  rp:
+    description: Настройки RP плагина
+    usage: |
+      /rp settings - Открыть меню настроек
+      /rp reload - Перезагрузить конфиг
+      /rp namecolor <цвет> [игрок] - Установить цвет имени
+      /rp help - Показать справку
+  description:
+    description: Управление описанием персонажа
+    aliases: [desc]
+    usage: |
+      /description - Показать свое описание
+      /description set <текст> - Установить описание
+      /description <игрок> - Показать описание игрока
+      /description help - Показать справку
+  adm:
+    description: Административные команды
+    usage: |
+      /adm rpname <игрок> remove - Удалить RP имя игрока
+      /adm rpname <игрок> <Имя> <Фамилия> - Установить RP имя игрока
+      /adm rpname list [all] - Список RP имен
+      /adm description <игрок> remove - Удалить описание игрока
+      /adm description <игрок> <текст> - Установить описание игрока
