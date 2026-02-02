@@ -34,6 +34,7 @@ settings:
       material: BLACK_STAINED_GLASS_PANE
       name: " "
     rpname-item:
+      enabled: true
       material: NAME_TAG
       name: "&eНастройка RP имени"
       lore:
@@ -43,6 +44,7 @@ settings:
         - "&eНажмите, чтобы открыть"
       slot: 10
     description-item:
+      enabled: true
       material: WRITABLE_BOOK
       name: "&bОписание персонажа"
       lore:
@@ -52,6 +54,7 @@ settings:
         - "&eНажмите, чтобы открыть"
       slot: 12
     colors-item:
+      enabled: true
       material: RED_DYE
       name: "&cЦвет имени"
       lore:
@@ -60,6 +63,7 @@ settings:
         - "&eНажмите, чтобы открыть"
       slot: 14
     roll-settings-item:
+      enabled: true
       material: PAPER
       name: "&eНастройки Roll"
       lore:

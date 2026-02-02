@@ -45,26 +45,46 @@ public class InventoryListener implements Listener {
             inv.setItem(i, borderItem.clone());
         }
 
-        ItemStack rpnameItem = createMenuItemWithSlot(
-            "rpname",
-            "settings.main-menu.rpname-item"
-        );
-        inv.setItem(
-            getSlotFromConfig("settings.main-menu.rpname-item.slot", 10),
-            rpnameItem
-        );
-
-        ItemStack descriptionItem = createMenuItemWithSlot(
-            "description",
-            "settings.main-menu.description-item"
-        );
-        inv.setItem(
-            getSlotFromConfig("settings.main-menu.description-item.slot", 12),
-            descriptionItem
-        );
+        if (
+            plugin
+                .getConfig()
+                .getBoolean("settings.main-menu.rpname-item.enabled", true)
+        ) {
+            ItemStack rpnameItem = createMenuItemWithSlot(
+                "rpname",
+                "settings.main-menu.rpname-item"
+            );
+            inv.setItem(
+                getSlotFromConfig("settings.main-menu.rpname-item.slot", 10),
+                rpnameItem
+            );
+        }
 
         if (
-            plugin.getConfig().getBoolean("settings.color-system-enabled", true)
+            plugin
+                .getConfig()
+                .getBoolean("settings.main-menu.description-item.enabled", true)
+        ) {
+            ItemStack descriptionItem = createMenuItemWithSlot(
+                "description",
+                "settings.main-menu.description-item"
+            );
+            inv.setItem(
+                getSlotFromConfig(
+                    "settings.main-menu.description-item.slot",
+                    12
+                ),
+                descriptionItem
+            );
+        }
+
+        if (
+            plugin
+                .getConfig()
+                .getBoolean("settings.color-system-enabled", true) &&
+            plugin
+                .getConfig()
+                .getBoolean("settings.main-menu.colors-item.enabled", true)
         ) {
             ItemStack colorsItem = createMenuItemWithSlot(
                 "colors",
@@ -76,14 +96,26 @@ public class InventoryListener implements Listener {
             );
         }
 
-        ItemStack rollItem = createMenuItemWithSlot(
-            "roll",
-            "settings.main-menu.roll-settings-item"
-        );
-        inv.setItem(
-            getSlotFromConfig("settings.main-menu.roll-settings-item.slot", 16),
-            rollItem
-        );
+        if (
+            plugin
+                .getConfig()
+                .getBoolean(
+                    "settings.main-menu.roll-settings-item.enabled",
+                    true
+                )
+        ) {
+            ItemStack rollItem = createMenuItemWithSlot(
+                "roll",
+                "settings.main-menu.roll-settings-item"
+            );
+            inv.setItem(
+                getSlotFromConfig(
+                    "settings.main-menu.roll-settings-item.slot",
+                    16
+                ),
+                rollItem
+            );
+        }
 
         player.openInventory(inv);
         openMenus.put(player.getUniqueId(), inv);
@@ -533,13 +565,36 @@ public class InventoryListener implements Listener {
             16
         );
 
-        if (slot == rpnameSlot) {
+        if (
+            slot == rpnameSlot &&
+            plugin
+                .getConfig()
+                .getBoolean("settings.main-menu.rpname-item.enabled", true)
+        ) {
             openRpNameMenu(player);
-        } else if (slot == descriptionSlot) {
+        } else if (
+            slot == descriptionSlot &&
+            plugin
+                .getConfig()
+                .getBoolean("settings.main-menu.description-item.enabled", true)
+        ) {
             openDescriptionMenu(player);
-        } else if (slot == colorsSlot) {
+        } else if (
+            slot == colorsSlot &&
+            plugin
+                .getConfig()
+                .getBoolean("settings.main-menu.colors-item.enabled", true)
+        ) {
             openColorMenu(player);
-        } else if (slot == rollSlot) {
+        } else if (
+            slot == rollSlot &&
+            plugin
+                .getConfig()
+                .getBoolean(
+                    "settings.main-menu.roll-settings-item.enabled",
+                    true
+                )
+        ) {
             openRollMenu(player);
         }
     }

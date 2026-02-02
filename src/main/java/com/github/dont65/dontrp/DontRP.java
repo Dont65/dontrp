@@ -3,6 +3,7 @@ package com.github.dont65.dontrp;
 import com.github.dont65.dontrp.commands.RPCommands;
 import com.github.dont65.dontrp.listeners.ChatListener;
 import com.github.dont65.dontrp.listeners.InventoryListener;
+import com.github.dont65.dontrp.listeners.PlayerListener;
 import com.github.dont65.dontrp.utils.NameManager;
 import com.github.dont65.dontrp.utils.PAPIExpansion;
 import java.io.File;
@@ -21,6 +22,7 @@ public class DontRP extends JavaPlugin {
     private NameManager nameManager;
     private ChatListener chatListener;
     private InventoryListener inventoryListener;
+    private PlayerListener playerListener;
     private FileConfiguration colorsConfig;
     private File colorsFile;
 
@@ -38,6 +40,7 @@ public class DontRP extends JavaPlugin {
         nameManager = new NameManager(this);
         chatListener = new ChatListener(this);
         inventoryListener = new InventoryListener(this);
+        playerListener = new PlayerListener(this);
 
         // Регистрация команд
         RPCommands cmdExecutor = new RPCommands(this);
@@ -62,6 +65,7 @@ public class DontRP extends JavaPlugin {
         // Регистрация слушателей
         Bukkit.getPluginManager().registerEvents(chatListener, this);
         Bukkit.getPluginManager().registerEvents(inventoryListener, this);
+        Bukkit.getPluginManager().registerEvents(playerListener, this);
 
         // Регистрация PlaceholderAPI
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
