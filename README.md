@@ -1,4 +1,7 @@
 # DontRP - Плагин для ролевой игры в Minecraft 
+<div>
+  <img width="1200" height="475" alt="DnD" src="https://img.shields.io/badge/version-1.4-blue" />
+</div>
 https://img.shields.io/badge/version-1.4-blue
 
 https://img.shields.io/badge/Minecraft-1.21.4-green
