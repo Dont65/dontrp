@@ -142,4 +142,4 @@ DontRP - это плагин для серверов Minecraft на базе Pap
 
 ## Лицензия
 
-Этот проект лицензирован под лицензией MIT. Подробнее см. в файле LICENSE.
+Этот проект лицензирован под лицензией MIT. Подробнее см. в файле [LICENSE](https://github.com/Dont65/dontrp/blob/main/LICENSE).
