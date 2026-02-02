@@ -138,7 +138,7 @@ DontRP - это плагин для серверов Minecraft на базе Pap
 
 ## Баги и предложения
 
-Если вы нашли баг или у вас есть предложение по улучшению плагина, создайте issue на [GitHub](https://github.com/Dont65/DontRP/issues).
+Если вы нашли баг или у вас есть предложение по улучшению плагина, создайте issue на [GitHub](https://github.com/Dont65/dontrp/issues).
 
 ## Лицензия
 
