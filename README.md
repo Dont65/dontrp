@@ -2,7 +2,7 @@
 <div>
   <img src="https://img.shields.io/badge/version-1.4-blue" />
   <img src="https://img.shields.io/badge/Minecraft-1.16.5-red" />
-  <img src="https://img.shields.io/badge/Paper-1.21.4_R0.1-yellow" />
+  <img src="https://img.shields.io/badge/Paper-1.16.5-yellow" />
   <img src="https://img.shields.io/badge/license-GNU-green" />
 </div>
 
