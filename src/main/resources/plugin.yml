@@ -1,7 +1,7 @@
 name: DontRP
 version: \${project.version}
 main: com.github.dont65.dontrp.DontRP
-api-version: 1.21
+api-version: 1.16
 authors: [Dont65]
 softdepend: [PlaceholderAPI]
 permissions:

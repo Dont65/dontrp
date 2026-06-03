@@ -149,7 +149,7 @@ settings:
       material: BLACK_STAINED_GLASS_PANE
       name: " "
     default-color-item:
-      material: BRUSH
+      material: NAME_TAG
       name: "&fЦвет по умолчанию"
       lore:
         - "&7Использовать цвет, заданный"
