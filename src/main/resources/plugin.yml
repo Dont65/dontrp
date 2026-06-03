@@ -1,7 +1,7 @@
 name: DontRP
 version: \${project.version}
 main: com.github.dont65.dontrp.DontRP
-api-version: 1.21
+api-version: 1.16
 authors: [Dont65]
 softdepend: [PlaceholderAPI]
 permissions:
@@ -26,6 +26,24 @@ permissions:
   dontrp.admin:
     description: Полные права на плагин
     default: op
+  dontrp.use.me:
+    description: Доступ к команде /me
+    default: true
+  dontrp.use.do:
+    description: Доступ к команде /do
+    default: true
+  dontrp.use.try:
+    description: Доступ к команде /try
+    default: true
+  dontrp.use.roll:
+    description: Доступ к команде /roll
+    default: true
+  dontrp.use.todo:
+    description: Доступ к команде /todo
+    default: true
+  dontrp.use.rpname:
+    description: Доступ к команде /rpname
+    default: true
 commands:
   rpname:
     description: Управление RP именем
