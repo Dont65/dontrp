@@ -1,8 +1,9 @@
+
 # DontRP - Плагин для ролевой игры в Minecraft 
 <div>
   <img src="https://img.shields.io/badge/version-1.5-blue" />
-  <img src="https://img.shields.io/badge/Minecraft-1.21.4+-red" />
-  <img src="https://img.shields.io/badge/Paper-1.21.4+-yellow" />
+  <img src="https://img.shields.io/badge/Minecraft-1.16.5-red" />
+  <img src="https://img.shields.io/badge/Paper-1.16.5-yellow" />
   <img src="https://img.shields.io/badge/license-GNU-green" />
 </div>
 
@@ -27,7 +28,7 @@ DontRP - это плагин для серверов Minecraft на базе Pap
 
 ## Установка
 
-1. Убедитесь, что ваш сервер использует **Paper** или **Spigot** версии **1.21.4** или выше.
+1. Убедитесь, что ваш сервер использует **Paper** или **Spigot** версии **1.16.5** (или выше).
 2. Установите [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) (настоятельно рекомендуется для раскрытия всего функционала).
 3. Скачайте последнюю версию плагина из [релизов](https://github.com/Dont65/dontrp/releases).
 4. Поместите файл `DontRP.jar` в папку `plugins` вашего сервера.
@@ -72,7 +73,7 @@ DontRP - это плагин для серверов Minecraft на базе Pap
 
 ## Разрешения (Permissions)
 
-### Права на использование ролевых команд (Новое)
+### Права на использование ролевых команд
 | Разрешение | Описание | По умолчанию |
 |------------|----------|--------------|
 | `dontrp.use.rpname` | Доступ к команде `/rpname` (установка/просмотр) | true |
@@ -103,34 +104,7 @@ DontRP - это плагин для серверов Minecraft на базе Pap
 2. `rp_colors.yml` — конфигурация доступных цветов для меню.
 
 ### Кастомизация форматов команд (`config.yml`)
-В секцию настроек добавлена поддержка изменения внешнего вида ролевых команд. Вы можете использовать стандартные цветовые коды (`&` или `§`), а также любые плейсхолдеры от **PlaceholderAPI** (например, `%dontrp_rpname_colored%`, `%player_name%` и т.д.).
-
-```yaml
-# Форматы вывода ролевых команд в чат
-# Поддерживаются любые плейсхолдеры PlaceholderAPI
-formats:
-  me: "&d* %dontrp_rpname_adaptive% %action%"
-  do: "&9* %action% (&b%dontrp_rpname_adaptive%&9)"
-  try:
-    success: "&d* %dontrp_rpname_adaptive% %action% | &aУспешно"
-    failure: "&d* %dontrp_rpname_adaptive% %action% | &cНеуспешно"
-  todo: "&6\"%text%\" &d- сказал %dontrp_rpname_adaptive%, %action%"
-  roll: "&e[Dice] &7%dontrp_rpname_adaptive% выбросил &e%result% &7из (%min%-%max%)"
-
-settings:
-  allowed-regex: "^[А-Яа-яA-Za-z]{2,16}$" # Регулярное выражение для проверки Имени/Фамилии
-  require-lastname: true                 # Обязательно ли вводить фамилию
-  color-system-enabled: true            # Включить/выключить систему цветов
-  roll:
-    default-min: 1
-    default-max: 100
-  local-chat:
-    enabled: true
-    radius: 20                           # Радиус слышимости ролевых команд в блоках
-
-```
-
----
+В секцию настроек добавлена поддержка изменения внешнего вида ролевых команд. Вы можете использовать стандартные коды цвета через параграф или амперсанд (`&`), а также любые плейсхолдеры от **PlaceholderAPI** (например, `%dontrp_rpname_colored%`, `%player_name%` и т.д.).
 
 ## PlaceholderAPI
 
@@ -151,12 +125,11 @@ settings:
 
 ## Сборка из исходного кода
 
-1. Убедитесь, что у вас установлен [Maven](https://maven.apache.org/) и JDK 21+.
+1. Убедитесь, что у вас установлен [Maven](https://maven.apache.org/) и совместимая версия Java (JDK 11-16 или JDK 8 в зависимости от вашего target).
 2. Клонируйте репозиторий:
 
 ```bash
-   git clone [https://github.com/Dont65/dontrp.git](https://github.com/Dont65/dontrp.git)
-
+   git clone https://github.com/Dont65/dontrp.git
 ```
 
 3. Перейдите в каталог проекта и запустите сборку:
