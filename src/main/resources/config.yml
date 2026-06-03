@@ -218,6 +218,7 @@ settings:
       slot: 26
 
 formats:
+  # Поддерживаются все плейсхолдеры из PlaceholderAPI (например, %player_name%, %vault_rank% и т.д.)
   me: "{colored_name} &7{text}"
   do: "&7{text} &e({colored_name}&e)"
   try: "{colored_name} &7{text} &8| {result}"

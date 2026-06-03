@@ -1,6 +1,7 @@
 package com.github.dont65.dontrp.commands;
 
 import com.github.dont65.dontrp.DontRP;
+import com.github.dont65.dontrp.utils.PAPIUtils;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Pattern;
@@ -36,6 +37,10 @@ public class RPCommands implements CommandExecutor, TabCompleter {
 
         switch (cmd) {
             case "rpname":
+                if (!sender.hasPermission("dontrp.use.rpname")) {
+                    sender.sendMessage(getMsg("no-permission"));
+                    return true;
+                }
                 return handleRpName(sender, args);
             case "me":
             case "do":
@@ -45,8 +50,16 @@ public class RPCommands implements CommandExecutor, TabCompleter {
                     sender.sendMessage("Только для игроков!");
                     return true;
                 }
+                if (!sender.hasPermission("dontrp.use." + cmd)) {
+                    sender.sendMessage(getMsg("no-permission"));
+                    return true;
+                }
                 return handleChatCommand((Player) sender, cmd, args);
             case "roll":
+                if (!sender.hasPermission("dontrp.use.roll")) {
+                    sender.sendMessage(getMsg("no-permission"));
+                    return true;
+                }
                 return handleRollCommand(sender, args);
             case "rp":
                 return handleRP(sender, args);
@@ -95,8 +108,7 @@ public class RPCommands implements CommandExecutor, TabCompleter {
                 if (
                     plugin
                         .getColorsConfig()
-                        .getConfigurationSection("colors") !=
-                    null
+                        .getConfigurationSection("colors") != null
                 ) {
                     for (String colorId : plugin
                         .getColorsConfig()
@@ -175,6 +187,14 @@ public class RPCommands implements CommandExecutor, TabCompleter {
 
     private String color(String text) {
         return DontRP.color(text);
+    }
+
+    private String applyPAPI(Player player, String text) {
+        if (text == null) return "";
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            return PAPIUtils.parse(player, text);
+        }
+        return text;
     }
 
     private String getMsg(String key) {
@@ -404,8 +424,9 @@ public class RPCommands implements CommandExecutor, TabCompleter {
 
         switch (cmd) {
             case "me":
+                String formatMe = applyPAPI(player, getFormat("me"));
                 String meMsg = color(
-                    getFormat("me")
+                    formatMe
                         .replace("{colored_name}", coloredName)
                         .replace("{name}", coloredName)
                         .replace("{text}", text)
@@ -413,8 +434,9 @@ public class RPCommands implements CommandExecutor, TabCompleter {
                 broadcastRadius(player, meMsg);
                 break;
             case "do":
+                String formatDo = applyPAPI(player, getFormat("do"));
                 String doMsg = color(
-                    getFormat("do")
+                    formatDo
                         .replace("{colored_name}", coloredName)
                         .replace("{name}", coloredName)
                         .replace("{text}", text)
@@ -423,15 +445,18 @@ public class RPCommands implements CommandExecutor, TabCompleter {
                 break;
             case "try":
                 boolean success = ThreadLocalRandom.current().nextBoolean();
-                String result = success
+                String resultFormat = success
                     ? getFormat("try-success")
                     : getFormat("try-fail");
+                resultFormat = applyPAPI(player, resultFormat);
+
+                String formatTry = applyPAPI(player, getFormat("try"));
                 String tryMsg = color(
-                    getFormat("try")
+                    formatTry
                         .replace("{colored_name}", coloredName)
                         .replace("{name}", coloredName)
                         .replace("{text}", text)
-                        .replace("{result}", result)
+                        .replace("{result}", resultFormat)
                 );
                 broadcastRadius(player, tryMsg);
                 break;
@@ -458,8 +483,10 @@ public class RPCommands implements CommandExecutor, TabCompleter {
 
                 String action = parts[0].trim();
                 String speech = parts[1].trim();
+
+                String formatTodo = applyPAPI(player, getFormat("todo"));
                 String todoMsg = color(
-                    getFormat("todo")
+                    formatTodo
                         .replace("{colored_name}", coloredName)
                         .replace("{name}", coloredName)
                         .replace("{action}", action)
@@ -589,8 +616,9 @@ public class RPCommands implements CommandExecutor, TabCompleter {
         int result = ThreadLocalRandom.current().nextInt(min, max + 1);
         String coloredName = plugin.getNameManager().getAdaptiveName(player);
 
+        String formatRoll = applyPAPI(player, getFormat("roll"));
         String msg = color(
-            getFormat("roll")
+            formatRoll
                 .replace("{colored_name}", coloredName)
                 .replace("{name}", coloredName)
                 .replace("{min}", String.valueOf(min))
@@ -652,7 +680,6 @@ public class RPCommands implements CommandExecutor, TabCompleter {
         }
     }
 
-    // Обработчик команды NameColor с поддержкой HEX
     private boolean handleNameColor(CommandSender sender, String[] args) {
         if (args.length < 2) {
             sender.sendMessage(
@@ -725,13 +752,11 @@ public class RPCommands implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        // --- ЛОГИКА ОБРАБОТКИ ПРЯМОГО ВВОДА КОДА (& ИЛИ HEX) ---
         boolean isLegacyColor = colorValue.startsWith("&");
         boolean isHexColor =
             colorValue.startsWith("<#") && colorValue.endsWith(">");
 
         if (isLegacyColor || isHexColor) {
-            // Валидация legacy кодов
             if (isLegacyColor) {
                 Pattern colorPattern = Pattern.compile(
                     "^&[0-9a-fk-or]$",
@@ -745,7 +770,6 @@ public class RPCommands implements CommandExecutor, TabCompleter {
                 }
             }
 
-            // Валидация HEX кодов
             if (isHexColor) {
                 Pattern hexPattern = Pattern.compile("^<#[0-9a-fA-F]{6}>$");
                 if (!hexPattern.matcher(colorValue).matches()) {
@@ -756,12 +780,10 @@ public class RPCommands implements CommandExecutor, TabCompleter {
                 }
             }
 
-            // Установка цвета
             plugin
                 .getNameManager()
                 .setPlayerColor(targetPlayer.getUniqueId(), colorValue);
 
-            // Формируем красивый показ цвета
             String previewColor = isHexColor ? colorValue : colorValue + "Цвет";
 
             String message = getMsg("color-set").replace(
@@ -782,7 +804,6 @@ public class RPCommands implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        // Если это не код, ищем в конфиге rp_colors.yml
         String colorName = plugin
             .getColorsConfig()
             .getString("colors." + colorValue + ".name");
